@@ -18,7 +18,7 @@ function env(key: string, default_value: string = ""): string {
     return val;
 }
 
-function envInt(key: string, default_value: number = 0): number {
+function envNumber(key: string, default_value: number = 0): number {
     let val = env(key);
     if(!val) {
         return default_value;
@@ -37,6 +37,13 @@ function envBool(key: string, default_value: boolean = false): boolean {
     return false;
 }
 
+function throwError(message: string, code: number = 0){
+  let e: any = new Error(message);
+  e.code = code;
+  throw e;
+}
+
 globalThis.env = env;
-globalThis.envInt = envInt;
+globalThis.envNumber = envNumber;
 globalThis.envBool = envBool;
+globalThis.throwError = throwError;

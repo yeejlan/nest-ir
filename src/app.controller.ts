@@ -2,6 +2,7 @@ import { Controller, Get, Param, HttpException} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { AppService } from './app.service';
 
+
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService, private configService: ConfigService) {}
@@ -22,7 +23,7 @@ export class AppController {
 
   @Get('/cat/:id')
   findOne(@Param('id') id: string) {
-    throw new HttpException('cat not found', 200);
+    throwError('cat not found', 1001);
     return `This action returns a #${id} cat`;
   }
 }
