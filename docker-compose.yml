@@ -1,19 +1,27 @@
-version: '3.2'
+version: '3.7'
 
 services:
 
-  nest-ir:
-    image: node:17-alpine3.12
+  main:
+    build:
+      context: .
+      target: development
+    image: nest-ir:1.0
     ports:
-      - 3000:3000
+      - 3002:3000
     environment:
-      DOTENV_CONFIG_PATH: .env.example
+      DOTENV_CONFIG_PATH: docker/env/env.example
     volumes:
       - ./:/app
       #- ./docker/supervisor:/etc/supervisor/conf.d/
+
     networks:
       - shared_net
-
+    command: yarn run start:dev
+    
 networks:
   shared_net:
     external: true
+
+# docker-compose up --build -V
+
