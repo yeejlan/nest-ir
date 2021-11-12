@@ -1,11 +1,10 @@
 import { Controller, Get, Param, HttpException} from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { AppService } from './app.service';
 
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService, private configService: ConfigService) {}
+  constructor(private readonly appService: AppService) {}
 
   // @Get()
   // getHello(): string {
@@ -14,7 +13,7 @@ export class AppController {
 
   @Get('find-all')
   findAll() {
-    let a:boolean = this.configService.get('app_a');
+    let a:boolean = envBool('app_a');
     if(a == true){
       return true
     }
