@@ -37,8 +37,9 @@ function envBool(key: string, default_value: boolean = false): boolean {
     return false;
 }
 
-function throwError(message: string, code: number = 0){
+function throwError(type: string, message: string, code: number = 0){
   let e: any = new Error(message);
+  e.type = type;
   e.code = code;
   throw e;
 }
