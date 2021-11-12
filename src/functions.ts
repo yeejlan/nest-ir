@@ -1,5 +1,7 @@
 
-let env_cache: any = {};
+type EnvCache = { [k: string]: string };
+
+let env_cache: EnvCache = {};
 
 function env(key: string, default_value: string = ""): string {
 

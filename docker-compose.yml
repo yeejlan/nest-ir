@@ -1,0 +1,19 @@
+version: '3.2'
+
+services:
+
+  nest-ir:
+    image: horizontal-freezer:v1.0
+    ports:
+      - 3000:3000
+    environment:
+      DOTENV_CONFIG_PATH: .env.example
+    volumes:
+      - ./:/app
+      #- ./docker/supervisor:/etc/supervisor/conf.d/
+    networks:
+      - shared_net
+
+networks:
+  shared_net:
+    external: true
