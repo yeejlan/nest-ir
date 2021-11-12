@@ -7,7 +7,7 @@ function env(key: string, default_value: string = ""): string {
 
     let val = '';
     if(env_cache.hasOwnProperty(key)){
-        val = env_cache.key;
+        val = env_cache[key];
     }else{
         val = process.env[key];
         env_cache[key] = val;
