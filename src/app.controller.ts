@@ -1,5 +1,6 @@
 import { Controller, Get, Param, HttpException} from '@nestjs/common';
 import { AppService } from './app.service';
+import { ControllerException } from './exceptions';
 
 
 @Controller()
@@ -35,4 +36,3 @@ export class AppController {
   }
 }
 
-class ControllerException {};
