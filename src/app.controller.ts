@@ -23,10 +23,16 @@ export class AppController {
   @Get('/cat/:id')
   findOne(@Param('id') id: string) {
     try{
-      throwError(AppController.name, 'cat not found', 1001);
+      throwError(ControllerException.name, 'cat not found', 1001);
     }catch(e){
       console.log(e);
+      if(e instanceof Error){
+        console.log('error type');
+      }
+      console.log(typeof e);
     }
     return `This action returns a #${id} cat`;
   }
 }
+
+class ControllerException {};
