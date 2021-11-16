@@ -1,6 +1,7 @@
 import {
   ExceptionFilter,
   Catch,
+  Inject,
   ArgumentsHost,
   HttpException,
   Logger,
@@ -8,10 +9,16 @@ import {
 
 import { UserException } from '../exceptions';
 import { ResoponseCode } from '../lib/ResponseCode';
+import { RegistryService } from '../service/RegistryService';
+import { LoggerService } from '../service/LoggerService';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
-  private readonly logger = new Logger(AllExceptionsFilter.name);
+
+  @Inject()
+  private readonly logger: LoggerService;
+  @Inject()
+  private readonly registry: RegistryService;
 
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -57,6 +64,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       code: code,
       message: type + message,
       data: null,
+      request_id: this.registry.getRequestId(true),
     });
   }
 }
