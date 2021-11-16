@@ -14,5 +14,11 @@ export class TestController {
     let id3 = this.registryService.getRequestId(true);
     return [id1,id2,id3];
   }
+
+  @Get('cat/:id')
+  findOne(@Param('id') id: string) {
+
+    throwError(ControllerException.name, 'Cat not found.', 1001);
+  }
 }
 
