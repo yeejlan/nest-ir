@@ -4,7 +4,6 @@ import {
   Inject,
   ArgumentsHost,
   HttpException,
-  Logger,
 } from '@nestjs/common';
 
 import { UserException } from '../exceptions';
@@ -23,7 +22,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();
-    const request = ctx.getRequest();
 
     let code: number = ResoponseCode.BAD_RESULT;
     let status: number = 500;
